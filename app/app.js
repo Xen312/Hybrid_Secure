@@ -23,19 +23,38 @@ const __dirname = path.dirname(__filename);
 ================================================== */
 
 export default function createApp({ userKeys }) {
-  const app = express();
+   const app = express();
 
-  /* ---------- MIDDLEWARE ---------- */
-  app.use(express.json());
-  app.use(cookieParser());
+   // -----------------------
+   // Content Security Policy
+   // -----------------------
+   app.use((req, res, next) => {
+      res.setHeader(
+         "Content-Security-Policy",
+         [
+            "default-src 'self'",
+            "script-src 'self' https: blob: 'unsafe-inline'",
+            "style-src 'self' 'unsafe-inline' https:",
+            "img-src 'self' https: data:",
+            "connect-src 'self' https: wss:",
+            "worker-src 'self' blob:"
+         ].join("; ")
+      );
+      next();
+   });
 
-  /* ---------- STATIC FILES ---------- */
-  app.use(express.static(path.join(__dirname, "../public")));
 
-  /* ---------- ROUTES ---------- */
-  app.use(createAuthRoutes({ userKeys }));
-  app.use(createUserRoutes());
-  app.use(createMessageRoutes());
+   /* ---------- MIDDLEWARE ---------- */
+   app.use(express.json());
+   app.use(cookieParser());
 
-  return app;
+   /* ---------- STATIC FILES ---------- */
+   app.use(express.static(path.join(__dirname, "../public")));
+
+   /* ---------- ROUTES ---------- */
+   app.use(createAuthRoutes({ userKeys }));
+   app.use(createUserRoutes());
+   app.use(createMessageRoutes());
+
+   return app;
 }
