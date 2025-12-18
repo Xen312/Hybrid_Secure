@@ -1,24 +1,24 @@
 # HybridSecure
 
-HybridSecure is a secure real-time web chat application designed to demonstrate modern authentication, real-time communication, and applied cryptographic principles using a clean, modular architecture.
+__HybridSecure__ is a secure real-time web chat application designed to demonstrate modern authentication, real-time communication, and applied cryptographic principles using a clean, modular architecture.
 
 The project is intended for academic and experimental use, with an emphasis on clarity, explainability, and correctness rather than production-scale deployment.
 
 ## Features
 
-Google OAuth 2.0 authentication
+- Google OAuth 2.0 authentication
 
-Real-time messaging using WebSockets
+- Real-time messaging using WebSockets
 
-Elliptic Curve Diffie–Hellman key exchange using X25519
+- Elliptic Curve Diffie–Hellman key exchange using X25519
 
-Symmetric encryption using AES-256-GCM
+- Symmetric encryption using AES-256-GCM
 
-Key derivation using HKDF (SHA-256)
+- Key derivation using HKDF (SHA-256)
 
-Message persistence and audit logging
+- Message persistence and audit logging
 
-Modular backend and frontend architecture
+- Modular backend and frontend architecture
 
 ## Design Goals
 
@@ -26,13 +26,13 @@ HybridSecure is structured to resemble real-world backend systems while remainin
 
 Key goals include:
 
-Clear separation of concerns
+1. Clear separation of concerns
 
-Minimal logic in the server entry point
+2. Minimal logic in the server entry point
 
-Explicit service layers for cryptography and message handling
+3. Explicit service layers for cryptography and message handling
 
-Modular ES-module-based frontend
+4. Modular ES-module-based frontend
 
 ##  Project Structure
 
@@ -73,105 +73,100 @@ hybrid_secure/
 
 ## Authentication Flow
 
-User signs in using Google OAuth 2.0
+1. User signs in using Google OAuth 2.0
 
-Server verifies the token and sets a session cookie
+2. Server verifies the token and sets a session cookie
 
-Client fetches user information via /me
+3. Client fetches user information via /me
 
-Application loads directly after successful authentication
+4. Application loads directly after successful authentication
 
-User identity is derived from the Google account, and no additional username selection is required.
+5. User identity is derived from the Google account, and no additional username selection is required.
 
 ## Messaging Architecture
 
-HTTP endpoints are used for loading message history
+- HTTP endpoints are used for loading message history
 
-WebSockets are used exclusively for real-time message delivery
+- WebSockets are used exclusively for real-time message delivery
 
-Message processing logic is isolated in a service layer
+- Message processing logic is isolated in a service layer
 
-Transport logic and business logic are strictly separated
+- Transport logic and business logic are strictly separated
 
-Cryptographic Model (Current Implementation)
+- Cryptographic Model (Current Implementation)
 
 This implementation performs cryptographic operations on the server for demonstration and audit purposes.
 
 ## Current Workflow
 
-X25519 key pairs are generated for users
+1. X25519 key pairs are generated for users
 
-Shared secrets are derived per chat session
+2. Shared secrets are derived per chat session
 
-AES-256-GCM keys are derived using HKDF
+3. AES-256-GCM keys are derived using HKDF
 
-Messages are encrypted before storage and logging
+4. Messages are encrypted before storage and logging
 
-Encrypted messages are transmitted via WebSocket
+5. Encrypted messages are transmitted via WebSocket
 
 ## Important Note
 
 This is not a true end-to-end encrypted system in its current form. The architecture, however, is intentionally designed to support future migration to client-side cryptography.
 
-Technologies Used
+## Technologies Used
 
-Node.js
+- Node.js
 
-Express
+- Express
 
-WebSockets (ws)
+- WebSockets (ws)
 
-Google OAuth 2.0
+- Google OAuth 2.0
 
-Google Sheets API
+- Google Sheets API
 
-Web Crypto / Node Crypto
+- Web Crypto / Node Crypto
 
-ES Modules (Frontend and Backend)
+- ES Modules (Frontend and Backend)
 
-Setup Instructions
+- Setup Instructions
 
-Clone the repository
+- Clone the repository
 
-Install dependencies
+- Install dependencies using `npm install`
 
-npm install
+- Configure environment variables:
 
+    - Google OAuth Client ID
 
-Configure environment variables:
+    - Google Sheets credentials
 
-Google OAuth Client ID
+- Start the server using `node server.js`
 
-Google Sheets credentials
-
-Start the server
-
-node server.js
-
-Open the application in the browser
+- Open the application in the browser
 
 ## Intended Use
 
 This project is intended for:
 
-Academic demonstrations
+- Academic demonstrations
 
-Cryptography and security seminars
+- Cryptography and security seminars
 
-Architecture and system design learning
+- Architecture and system design learning
 
-Experimental feature development
+- Experimental feature development
 
-It is not intended for production use without significant security hardening.
+- It is not intended for production use without significant security hardening.
 
-Future Work
+- Future Work
 
-Client-side key generation
+- Client-side key generation
 
-True end-to-end encryption
+- True end-to-end encryption
 
-Message authenticity verification
+- Message authenticity verification
 
-Improved session management
+- Improved session management
 
-Database abstraction layer
+- Database abstraction layer
