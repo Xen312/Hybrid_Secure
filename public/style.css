@@ -68,6 +68,11 @@ body {
   font-size: 13px;
 }
 
+#g_id_onload {
+  display: flex;
+  justify-content: center;
+}
+
 /* MAIN APP LAYOUT */
 .app {
   display: flex;
