@@ -34,33 +34,40 @@ Explicit service layers for cryptography and message handling
 
 Modular ES-module-based frontend
 
-Project Structure
+##Project Structure
+
 hybrid_secure/
-├── server.js                 # Application entry point
+├── server.js                  # Application entry point
+│
 ├── app/
-│   ├── app.js                # Express application setup
-│   ├── config/               # Environment and OAuth configuration
-│   ├── routes/               # HTTP route definitions
+│   ├── app.js                 # Express application setup
+│   │
+│   ├── config/                # Environment and OAuth configuration
+│   │
+│   ├── routes/                # HTTP route definitions
 │   │   ├── auth.routes.js
 │   │   ├── user.routes.js
 │   │   └── message.routes.js
-│   ├── services/             # Business logic and cryptography
+│   │
+│   ├── services/              # Business logic and cryptography
 │   │   ├── crypto.service.js
 │   │   ├── message.service.js
 │   │   └── user.service.js
-│   ├── ws/                   # WebSocket handling
+│   │
+│   ├── ws/                    # WebSocket handling
 │   │   └── chat.socket.js
-│   └── db/
-│       └── sheets.db.js      # Google Sheets persistence layer
+│   │
+│   └── db/                    # Persistence layer
+│       └── sheets.db.js       # Google Sheets integration
 │
 ├── public/
-│   ├── index.html
-│   ├── style.css
+│   ├── index.html             # Frontend HTML
+│   ├── style.css              # Global styles
 │   └── js/
-│       ├── app.js            # Frontend entry point
-│       ├── auth.js           # Authentication logic
-│       ├── chat.js           # Chat UI logic
-│       └── socket.js         # WebSocket client
+│       ├── app.js             # Frontend entry point
+│       ├── auth.js            # Authentication logic
+│       ├── chat.js            # Chat UI logic
+│       └── socket.js          # WebSocket client
 │
 └── README.md
 
