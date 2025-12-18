@@ -4,7 +4,7 @@ HybridSecure is a secure real-time web chat application designed to demonstrate 
 
 The project is intended for academic and experimental use, with an emphasis on clarity, explainability, and correctness rather than production-scale deployment.
 
-Features
+## Features
 
 Google OAuth 2.0 authentication
 
@@ -20,7 +20,7 @@ Message persistence and audit logging
 
 Modular backend and frontend architecture
 
-Design Goals
+## Design Goals
 
 HybridSecure is structured to resemble real-world backend systems while remaining easy to understand and explain in an academic context.
 
@@ -34,7 +34,7 @@ Explicit service layers for cryptography and message handling
 
 Modular ES-module-based frontend
 
-##Project Structure
+##  Project Structure
 
 hybrid_secure/  
 ├── server.js                  # Application entry point  
@@ -71,7 +71,7 @@ hybrid_secure/
 │  
 └── README.md
 
-Authentication Flow
+## Authentication Flow
 
 User signs in using Google OAuth 2.0
 
@@ -83,7 +83,7 @@ Application loads directly after successful authentication
 
 User identity is derived from the Google account, and no additional username selection is required.
 
-Messaging Architecture
+## Messaging Architecture
 
 HTTP endpoints are used for loading message history
 
@@ -97,7 +97,7 @@ Cryptographic Model (Current Implementation)
 
 This implementation performs cryptographic operations on the server for demonstration and audit purposes.
 
-Current Workflow
+## Current Workflow
 
 X25519 key pairs are generated for users
 
@@ -109,7 +109,7 @@ Messages are encrypted before storage and logging
 
 Encrypted messages are transmitted via WebSocket
 
-Important Note
+## Important Note
 
 This is not a true end-to-end encrypted system in its current form. The architecture, however, is intentionally designed to support future migration to client-side cryptography.
 
@@ -148,10 +148,9 @@ Start the server
 
 node server.js
 
-
 Open the application in the browser
 
-Intended Use
+## Intended Use
 
 This project is intended for:
 
