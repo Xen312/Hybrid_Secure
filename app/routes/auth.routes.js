@@ -22,9 +22,13 @@ export default function createAuthRoutes({ userKeys }) {
   const router = express.Router();
 
   /* ---------- GOOGLE LOGIN ---------- */
-  router.post("/auth/google", async (req, res) => {
+  router.get("/auth/google", async (req, res) => {
     try {
       const { credential } = req.body;
+
+      if(!credential) {
+        return res.status(400).json({ error: "Missing Credential" });
+      }
 
       const ticket = await googleClient.verifyIdToken({
         idToken: credential,

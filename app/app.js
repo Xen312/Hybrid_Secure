@@ -29,20 +29,10 @@ export default function createApp({ userKeys }) {
    // Content Security Policy
    // -----------------------
    app.use((req, res, next) => {
-      res.setHeader(
-         "Content-Security-Policy",
-         [
-            "default-src 'self'",
-            "script-src 'self' https: blob: 'unsafe-inline'",
-            "style-src 'self' 'unsafe-inline' https:",
-            "img-src 'self' https: data:",
-            "connect-src 'self' https: wss:",
-            "worker-src 'self' blob:"
-         ].join("; ")
-      );
+      res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
+      res.setHeader("Cross-Origin-Embedder-Policy", "unsafe-none");
       next();
    });
-
 
    /* ---------- MIDDLEWARE ---------- */
    app.use(express.json());

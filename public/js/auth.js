@@ -55,6 +55,10 @@ window.handleGoogleLogin = async function (response) {
     body: JSON.stringify({ credential: response.credential })
   });
 
+  if (!res.ok) {
+    throw new Error("Authentication failed");
+  }
+
   const data = await res.json();
   if (data.success) location.reload();
 };
