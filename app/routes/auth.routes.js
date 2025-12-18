@@ -22,7 +22,7 @@ export default function createAuthRoutes({ userKeys }) {
   const router = express.Router();
 
   /* ---------- GOOGLE LOGIN ---------- */
-  router.get("/auth/google", async (req, res) => {
+  router.post("/auth/google", async (req, res) => {
     try {
       const { credential } = req.body;
 

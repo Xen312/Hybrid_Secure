@@ -42,7 +42,7 @@ export default function createApp({ userKeys }) {
    app.use(express.static(path.join(__dirname, "../public")));
 
    /* ---------- ROUTES ---------- */
-   app.use(createAuthRoutes({ userKeys }));
+   app.use("/auth", createAuthRoutes({ userKeys }));
    app.use(createUserRoutes());
    app.use(createMessageRoutes());
 
