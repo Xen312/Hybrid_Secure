@@ -264,3 +264,43 @@ body {
   opacity: 0.7;
   margin-bottom: 2px;
 }
+
+/* =========================
+   Mobile Chat Layout
+   ========================= */
+
+@media (max-width: 520px) {
+  .app {
+    display: flex;
+    height: 100vh;
+  }
+
+  .users-panel {
+    width: 100%;
+  }
+
+  .chat-panel {
+    display: none;
+    width: 100%;
+  }
+
+  .app.show-chat .users-panel {
+    display: none;
+  }
+
+  .app.show-chat .chat-panel {
+    display: flex;
+  }
+
+  .back-btn {
+    display: inline-block;
+  }
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  margin-right: 8px;
+  cursor: pointer;
+}

@@ -31,7 +31,11 @@ export async function loadUsers(openChat) {
       <span>${user.username}</span>
     `;
 
-    div.onclick = () => openChat(user);
+    div.onclick = () => {
+      openChat(user);
+    
+      document.querySelector(".app")?.classList.add("show-chat");
+    };
     userList.appendChild(div);
   });
 }
@@ -62,6 +66,14 @@ export async function openChat(user, socket) {
   }));
 
   ws.chat_id = chat_id;
+}
+
+const backBtn = document.getElementById("backBtn");
+
+if (backBtn) {
+  backBtn.onclick = () => {
+    document.querySelector(".app").classList.remove("show-chat");
+  };
 }
 
 /* ---------- INCOMING MESSAGES ---------- */
