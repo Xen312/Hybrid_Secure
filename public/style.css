@@ -148,6 +148,7 @@ body {
 .chat-header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 12px;
   padding: 14px;
   border-bottom: 1px solid #e2e4e8;
@@ -157,6 +158,15 @@ body {
 .chat-username {
   font-size: 16px;
   font-weight: 600;
+}
+
+.back-btn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 18px;
+  margin-right: 8px;
+  cursor: pointer;
 }
 
 .message-row {
@@ -275,32 +285,28 @@ body {
     height: 100vh;
   }
 
-  .users-panel {
+  .sidebar {
     width: 100%;
   }
 
-  .chat-panel {
+  .chat-area {
     display: none;
     width: 100%;
   }
 
-  .app.show-chat .users-panel {
+  .app.show-chat .sidebar {
     display: none;
   }
 
-  .app.show-chat .chat-panel {
+  .app.show-chat .chat-area {
     display: flex;
   }
 
   .back-btn {
-    display: inline-block;
+    display: block;
   }
-}
 
-.back-btn {
-  background: none;
-  border: none;
-  font-size: 18px;
-  margin-right: 8px;
-  cursor: pointer;
+  .composer {
+    width: 100%;
+  }
 }

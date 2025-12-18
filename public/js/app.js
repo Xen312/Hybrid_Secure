@@ -13,6 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
   checkAuth(async () => {
     ws = createSocket(handleIncomingMessage);
     await loadUsers(user => openChat(user, ws));
-    setupComposer(ws); // 👈 THIS LINE FIXES TYPING
+    setupComposer(ws);
   });
 });

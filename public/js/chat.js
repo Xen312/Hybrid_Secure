@@ -9,6 +9,7 @@ const userList = document.getElementById("userList");
 const messagesEl = document.getElementById("messages");
 const messageInput = document.getElementById("messageInput");
 const sendBtn = document.getElementById("sendBtn");
+const backBtn = document.querySelector(".back-btn");
 
 const chatPic = document.getElementById("chatPic");
 const chatName = document.getElementById("chatName");
@@ -68,12 +69,10 @@ export async function openChat(user, socket) {
   ws.chat_id = chat_id;
 }
 
-const backBtn = document.getElementById("backBtn");
-
 if (backBtn) {
-  backBtn.onclick = () => {
-    document.querySelector(".app").classList.remove("show-chat");
-  };
+  backBtn.addEventListener("click", () => {
+    document.querySelector(".app")?.classList.remove("show-chat");
+  });
 }
 
 /* ---------- INCOMING MESSAGES ---------- */
