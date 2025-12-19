@@ -54,16 +54,18 @@ window.handleGoogleLogin = async function (response) {
   const res = await fetch("/auth/google", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ credential: response.credential })
+    body: JSON.stringify({ credential: response.credential }),
+    credentials: "include" // ✅ REQUIRED
   });
 
   if (!res.ok) {
     throw new Error("Authentication failed");
   }
 
-  const data = await res.json();
-  if (data.success) location.reload();
+  // 🔑 Re-evaluate auth state instead of reloading
+  await checkAuth();
 };
+
 
 /* ---------- LOGOUT ---------- */
 logoutBtn.onclick = () => {
