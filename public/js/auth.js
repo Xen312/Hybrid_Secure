@@ -49,22 +49,22 @@ export async function checkAuth(onReady) {
   }
 }
 
-window.handleGoogleLogin = async function (response) {
-  const res = await fetch("/auth/google", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ credential: response.credential }),
-    credentials: "include"
-  });
+// window.handleGoogleLogin = async function (response) {
+//   const res = await fetch("/auth/google", {
+//     method: "POST",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify({ credential: response.credential }),
+//     credentials: "include"
+//   });
 
-  if (!res.ok) {
-    throw new Error("Authentication failed");
-  }
+//   if (!res.ok) {
+//     throw new Error("Authentication failed");
+//   }
 
-  showApp();
+//   showApp();
 
-  setTimeout(() => checkAuth(() => {}), 300);
-};
+//   setTimeout(() => checkAuth(() => {}), 300);
+// };
 
 
 /* ---------- LOGOUT ---------- */
