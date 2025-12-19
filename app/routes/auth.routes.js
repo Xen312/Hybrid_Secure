@@ -68,7 +68,8 @@ export default function createAuthRoutes({ userKeys }) {
       // Session cookie
       res.cookie("google_id", google_id, {
         httpOnly: true,
-        sameSite: "lax"
+        sameSite: "none",
+        secure: true
       });
 
       res.json({ success: true, user });
