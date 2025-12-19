@@ -47,20 +47,25 @@ export async function processMessage({
   const receiver_id = sender_id === a ? b : a;
 
   // Ensure sender key exists
-  if (!userKeys.has(sender_id)) {
-    const user = await getUserByGoogleId(sender_id);
-    if (user) {
+  async function ensureUserKey(user_id) {
+    if (!userKeys.has(user_id)) {
+      const user = await getUserByGoogleId(user_id);
+      if (!user) return;
+
       const keypair = generateX25519KeyPair();
-      userKeys.set(sender_id, keypair);
+      userKeys.set(user_id, keypair);
 
       await logUserKeys({
-        google_id: sender_id,
+        google_id: user_id,
         username: user.username,
         privateKey: keypair.privateKey,
         publicKey: keypair.publicKey
       });
     }
   }
+
+  await ensureUserKey(sender_id);
+  await ensureUserKey(receiver_id);
 
   const senderKey = userKeys.get(sender_id);
   const receiverKey = userKeys.get(receiver_id);
@@ -86,7 +91,7 @@ export async function processMessage({
         user_a,
         user_b,
         sharedSecret: sharedSecret.toString("base64"),
-        aesKey: aesKey.toString("base64")
+        aesKey: aesKey.toString("hex")
       });
 
       global.chatSecretsLogged.add(chat_id);

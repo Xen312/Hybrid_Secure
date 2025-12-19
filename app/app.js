@@ -29,8 +29,11 @@ export default function createApp({ userKeys }) {
    // Content Security Policy
    // -----------------------
    app.use((req, res, next) => {
+      res.removeHeader("Cross-Origin-Opener-Policy");
+      res.removeHeader("Cross-Origin-Embedder-Policy");
+
+      // Explicitly allow popups + postMessage
       res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
-      res.setHeader("Cross-Origin-Embedder-Policy", "unsafe-none");
       next();
    });
 

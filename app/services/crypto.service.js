@@ -1,4 +1,5 @@
 // app/services/crypto.service.js
+import { info } from "console";
 import crypto from "crypto";
 
 /* ==================================================

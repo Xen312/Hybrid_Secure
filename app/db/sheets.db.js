@@ -33,7 +33,7 @@ export async function createUser({ google_id, username, picture, email }) {
     range: "USERS!A2:E",
     valueInputOption: "RAW",
     requestBody: {
-      values: [[google_id, username, picture, email, false]]
+      values: [[google_id, username, picture, email]]
     }
   });
 }

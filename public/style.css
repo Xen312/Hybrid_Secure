@@ -285,9 +285,13 @@ body {
    ========================= */
 
 @media (max-width: 520px) {
+  html, body, .app {
+    overflow-y: auto;
+  }
+  
   .app {
     display: flex;
-    height: 100vh;
+    height: 100svh;
   }
 
   .sidebar {
