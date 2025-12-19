@@ -26,7 +26,9 @@ function showApp() {
 /* ---------- AUTH CHECK ---------- */
 export async function checkAuth(onReady) {
   try {
-    const res = await fetch("/me");
+    const res = await fetch("/me", {
+      credentials: "include"
+    });
     const data = await res.json();
 
     if (!data) {
