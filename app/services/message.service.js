@@ -34,12 +34,14 @@ export async function processMessage({
 }) {
   const { chat_id, sender_id, text, timestamp } = msg;
 
+  const readableTimestamp = new Date(timestamp).toISOString();
+
   /* ===== LOG PLAINTEXT (JUDGE VISIBILITY) ===== */
   await logPlaintextMessage({
     chat_id,
     sender: sender_id,
     plaintext: text,
-    timestamp
+    timestamp: readableTimestamp
   });
 
   /* ===== CRYPTO ===== */
@@ -91,7 +93,7 @@ export async function processMessage({
         user_a,
         user_b,
         sharedSecret: sharedSecret.toString("base64"),
-        aesKey: aesKey.toString("hex")
+        aesKey: Buffer.from(aesKey).toString("base64")
       });
 
       global.chatSecretsLogged.add(chat_id);
@@ -105,7 +107,7 @@ export async function processMessage({
       iv: encrypted.iv,
       ciphertext: encrypted.ciphertext,
       authTag: encrypted.authTag,
-      timestamp
+      timestamp: readableTimestamp
     });
 
     await logNetworkTraffic({
@@ -115,5 +117,7 @@ export async function processMessage({
   }
 
   /* ===== SAVE MESSAGE ===== */
-  await saveMessage(msg);
+  await saveMessage({
+    ...msg,
+    timestamp: readableTimestamp});
 }

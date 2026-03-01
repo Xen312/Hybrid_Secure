@@ -90,9 +90,9 @@ export async function updateUsername({ google_id, username }) {
     requestBody: {
       values: [[
         username,
-        values[rowIndex][2], // picture
-        values[rowIndex][3], // email
-        true                 // 👈 username_set = TRUE
+        values[rowIndex][2],
+        values[rowIndex][3],
+        true
       ]]
     }
   });
@@ -204,18 +204,37 @@ export async function logEncryptedMessage({
     range: "ENCRYPTED_MESSAGES!A:F",
     valueInputOption: "RAW",
     requestBody: {
-      values: [[chat_id, sender, iv, ciphertext, authTag, timestamp]]
+      values: [[
+        chat_id,
+        sender,
+        String(iv),
+        String(ciphertext),
+        String(authTag),
+        timestamp
+      ]]
     }
   });
-}
+} 
 
 export async function logNetworkTraffic({ direction, payload }) {
+  let safePayload;
+
+  if (Buffer.isBuffer(payload)) {
+    safePayload = payload.toString("base64");
+  } else if (payload instanceof ArrayBuffer) {
+    safePayload = Buffer.from(payload).toString("base64");
+  } else if (typeof payload === "object") {
+    safePayload = JSON.stringify(payload);
+  } else {
+    safePayload = String(payload);
+  }
+
   await sheets.spreadsheets.values.append({
     spreadsheetId: ENV.SPREADSHEET_ID,
     range: "NETWORK_TRAFFIC!A:C",
     valueInputOption: "RAW",
     requestBody: {
-      values: [[direction, "websocket", JSON.stringify(payload)]]
+      values: [[direction, "websocket", safePayload]]
     }
   });
 }

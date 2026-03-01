@@ -66,6 +66,23 @@ export async function checkAuth(onReady) {
 //   setTimeout(() => checkAuth(() => {}), 300);
 // };
 
+window.handleGoogleCredential = async function (response) {
+  const res = await fetch("/auth/google", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ credential: response.credential }),
+    credentials: "include"
+  });
+
+  if (!res.ok) {
+    console.error("Authentication failed");
+    return;
+  }
+
+  // Re-check auth and load app
+  location.reload();
+};
+
 
 /* ---------- LOGOUT ---------- */
 logoutBtn.onclick = () => {
